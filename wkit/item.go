@@ -53,6 +53,15 @@ type DirItem struct {
 	Content map[string]Item
 }
 
+func (o *OneItem) DeepCopy() *OneItem {
+	return &OneItem{
+		Dir:    o.Dir,
+		parent: o.parent,
+		opened: o.opened,
+		buffer: append([]byte{}, o.buffer...),
+	}
+}
+
 // Return the object's Dir structure
 func (o *OneItem) GetDir() *warp9.Dir {
 	return &o.Dir
